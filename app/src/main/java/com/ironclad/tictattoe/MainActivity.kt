@@ -63,32 +63,40 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         if (v != null) {
             when (v.id) {
                 R.id.bt1 -> {
-
+                    updateValues(0, 0, PLAYER)
                 }
                 R.id.bt2 -> {
+                    updateValues(0, 1, PLAYER)
 
                 }
 
                 R.id.bt3 -> {
+                    updateValues(0, 2, PLAYER)
 
                 }
 
                 R.id.bt4 -> {
+                    updateValues(1, 0, PLAYER)
 
                 }
                 R.id.bt5 -> {
+                    updateValues(1, 1, PLAYER)
 
                 }
                 R.id.bt6 -> {
+                    updateValues(1, 2, PLAYER)
 
                 }
                 R.id.bt7 -> {
+                    updateValues(2, 0, PLAYER)
 
                 }
                 R.id.bt8 -> {
+                    updateValues(2, 1, PLAYER)
 
                 }
                 R.id.bt9 -> {
+                    updateValues(2, 2, PLAYER)
 
                 }
             }
@@ -110,6 +118,18 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         checkWinner()
     }
 
+    private fun updateValues(row: Int, col: Int, player: Boolean) {
+        val text = if (player) "X" else "O"
+        val value = if (player) 1 else 0
+
+        board[row][col].apply {
+            isEnabled = false
+            setText(text)
+        }
+
+        boardStatus[row][col] = value
+    }
+
     private fun checkWinner() {
         //Horizontal Rows
         for (i in 0..2) {
@@ -126,7 +146,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
 
         //Vertical Columns
-        for(i in 0..2){
+        for (i in 0..2) {
             if (boardStatus[0][i] == boardStatus[1][i] && boardStatus[0][i] == boardStatus[2][i]) {
                 if (boardStatus[0][i] == 1) {
                     updateDisplay("Player 1 Winner")
@@ -139,21 +159,19 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
 
         //FirstDiagonal
-        if(boardStatus[0][0] == boardStatus[1][1] && boardStatus[0][0] == boardStatus[2][2]){
-            if(boardStatus[0][0] == 1){
+        if (boardStatus[0][0] == boardStatus[1][1] && boardStatus[0][0] == boardStatus[2][2]) {
+            if (boardStatus[0][0] == 1) {
                 updateDisplay("Player 1 is Winner")
-            }
-            else if(boardStatus[0][0] == 0){
+            } else if (boardStatus[0][0] == 0) {
                 updateDisplay("Player 2 is Winner")
             }
         }
 
         //FirstDiagonal
-        if(boardStatus[0][2] == boardStatus[1][1] && boardStatus[0][2] == boardStatus[2][0]){
-            if(boardStatus[0][2] == 1){
+        if (boardStatus[0][2] == boardStatus[1][1] && boardStatus[0][2] == boardStatus[2][0]) {
+            if (boardStatus[0][2] == 1) {
                 updateDisplay("Player 1 is Winner")
-            }
-            else if(boardStatus[0][2] == 0){
+            } else if (boardStatus[0][2] == 0) {
                 updateDisplay("Player 2 is Winner")
             }
         }
