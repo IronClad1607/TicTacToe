@@ -9,8 +9,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
 
-    var PLAYER = true
-    var TURN_COUNT = 0
+    private var PLAYER = true
+    private var TURN_COUNT = 0
 
     var boardStatus = Array(3) {
         IntArray(3)
